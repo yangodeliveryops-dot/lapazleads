@@ -1,0 +1,7 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/yango-partner-leads-lapaz.html"
+  to = "/"
+  status = 301

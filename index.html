@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es-BO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unite a la red de partners de Yango en La Paz</title>
+<style>
+  :root {
+    --red: #FF0000;
+    --red-dark: #e00000;
+    --bg: #F8F8F8;
+    --white: #FFFFFF;
+    --text: #000000;
+    --muted: #666666;
+    --border: #e5e5e5;
+    --radius-lg: 30px;
+    --radius-md: 16px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Yango Text", "YS Text", "Helvetica Neue", Arial, sans-serif; }
+  body { background: var(--bg); color: var(--text); min-height: 100vh; display: flex; justify-content: center; padding: 16px; }
+  .container { width: 100%; max-width: 520px; }
+
+  .hero { text-align: center; padding: 28px 8px 20px; }
+  .logo { display: inline-block; background: var(--red); color: var(--white); font-weight: 800; font-size: 22px; padding: 6px 16px; border-radius: 8px; letter-spacing: -0.5px; margin-bottom: 18px; }
+  h1 { font-size: 27px; line-height: 1.2; font-weight: 700; letter-spacing: -0.5px; color: var(--text); }
+  h1 .accent { color: var(--red); }
+  .sub { color: var(--muted); font-size: 15px; margin-top: 10px; }
+
+  .or { display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: 13px; margin: 4px 8px 16px; }
+  .or::before, .or::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+
+  .card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px 20px; box-shadow: 0 2px 12px rgba(0,0,0,.05); }
+  .field { margin-bottom: 14px; }
+  label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+  label .opt { color: var(--muted); font-weight: 400; }
+  input, select { width: 100%; background: var(--bg); border: 1.5px solid var(--border); border-radius: var(--radius-md); color: var(--text); font-size: 16px; padding: 13px 14px; outline: none; -webkit-appearance: none; appearance: none; transition: border-color .15s; }
+  select { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%23666666' stroke-width='2' fill='none'/></svg>"); background-repeat: no-repeat; background-position: right 14px center; }
+  input:focus, select:focus { border-color: var(--red); }
+  input:focus:invalid { border-color: #cf2d2d; }
+  input::placeholder { color: #b3b3b3; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { position: relative; }
+  .chip input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .chip span { display: inline-block; background: var(--bg); border: 1.5px solid var(--border); border-radius: 100px; padding: 10px 18px; font-size: 15px; cursor: pointer; transition: all .15s; }
+  .chip input:checked + span { background: var(--red); border-color: var(--red); color: var(--white); font-weight: 700; }
+
+  .submit { width: 100%; background: var(--red); color: var(--white); font-size: 18px; font-weight: 700; padding: 17px; border: none; border-radius: 100px; cursor: pointer; margin-top: 8px; transition: background .15s; }
+  .submit:hover { background: var(--red-dark); }
+  .submit:active { transform: scale(0.98); }
+
+  .trust { text-align: center; color: var(--muted); font-size: 13px; margin-top: 14px; }
+  .trust b { color: var(--text); }
+
+  .hidden { display: none; }
+  .success { text-align: center; padding: 40px 12px; }
+  .success .check { width: 72px; height: 72px; border-radius: 50%; background: var(--red); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+  .success h2 { font-size: 24px; margin-bottom: 10px; }
+  .success p { color: var(--muted); font-size: 15px; }
+  .error-msg { color: #cf2d2d; font-size: 12.5px; margin-top: 4px; display: none; }
+  .opt-line { margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <div class="logo">Yango</div>
+    <h1>¿Tenés 10 vehículos o más? <span class="accent">Unite a la red de partners de Yango en La Paz</span></h1>
+    <p class="sub">Completa el formulario y generá ingresos adicionales con tu flota.</p>
+  </div>
+
+  <div class="or">Completá el formulario</div>
+
+  <form class="card" id="leadForm" novalidate>
+    <div class="field">
+      <label for="nombre">Nombre o empresa</label>
+      <input id="nombre" name="nombre" type="text" required placeholder="Ej: Juan Pérez o Pérez Flota SRL">
+      <div class="error-msg">Ingresá tu nombre o el de tu empresa.</div>
+    </div>
+    <div class="field">
+      <label for="vehiculos">¿Cuántos vehículos tenés?</label>
+      <select id="vehiculos" name="vehiculos" required>
+        <option value="" disabled selected>Seleccioná una opción</option>
+        <option value="10-20">10 – 20</option>
+        <option value="21-40">21 – 40</option>
+        <option value="41-60">41 – 60</option>
+        <option value="+60">Más de 60</option>
+      </select>
+      <div class="error-msg">Seleccioná cuántos vehículos tenés.</div>
+    </div>
+    <div class="field">
+      <label>Tipo de vehículo</label>
+      <div class="chips">
+        <label class="chip"><input type="radio" name="tipo" value="auto" required><span>🚗 Auto</span></label>
+        <label class="chip"><input type="radio" name="tipo" value="moto"><span>🏍️ Moto</span></label>
+        <label class="chip"><input type="radio" name="tipo" value="ambos"><span>Ambos</span></label>
+      </div>
+      <div class="error-msg">Elegí el tipo de vehículo.</div>
+    </div>
+    <div class="field">
+      <label for="telefono">Teléfono</label>
+      <input id="telefono" name="telefono" type="tel" required placeholder="+591 6XXXXXXX" pattern="[0-9+()\-\s]{6,}">
+      <div class="error-msg">Ingresá un teléfono válido.</div>
+    </div>
+    <div class="field">
+      <label for="correo">Correo electrónico</label>
+      <input id="correo" name="correo" type="email" required placeholder="tucorreo@gmail.com">
+      <div class="error-msg">Ingresá un correo válido.</div>
+    </div>
+    <div class="field">
+      <label for="zona">Zona de La Paz donde operás</label>
+      <select id="zona" name="zona" required>
+        <option value="" disabled selected>Seleccioná tu zona</option>
+        <option value="centro">Centro</option>
+        <option value="sopocachi">Sopocachi</option>
+        <option value="miraflores">Miraflores</option>
+        <option value="san-pedro">San Pedro</option>
+        <option value="el-alto">El Alto</option>
+        <option value="zona-sur">Zona Sur</option>
+        <option value="otra">Otra zona</option>
+      </select>
+      <div class="error-msg">Seleccioná la zona donde operás.</div>
+    </div>
+    <div class="field">
+      <label class="opt-line">¿Tenés oficina? <span class="opt">(opcional)</span></label>
+      <div class="chips">
+        <label class="chip"><input type="radio" name="oficina" value="si"><span>Sí</span></label>
+        <label class="chip"><input type="radio" name="oficina" value="no"><span>No</span></label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Horario preferido de contacto</label>
+      <div class="chips">
+        <label class="chip"><input type="radio" name="horario" value="manana" required><span>🌅 Mañana</span></label>
+        <label class="chip"><input type="radio" name="horario" value="tarde"><span>☀️ Tarde</span></label>
+        <label class="chip"><input type="radio" name="horario" value="noche"><span>🌙 Noche</span></label>
+      </div>
+      <div class="error-msg">Elegí tu horario preferido.</div>
+    </div>
+    <div class="field">
+      <label>Canal de contacto</label>
+      <div class="chips">
+        <label class="chip"><input type="radio" name="canal" value="llamada" required><span>📞 Llamada</span></label>
+        <label class="chip"><input type="radio" name="canal" value="whatsapp"><span>💬 WhatsApp</span></label>
+      </div>
+      <div class="error-msg">Elegí tu canal preferido.</div>
+    </div>
+    <button class="submit" type="submit">Quiero ser partner</button>
+    <p class="trust"><b>Un asesor de Yango se contactará en menos de 24 horas.</b><br>Tus datos se usan únicamente para coordinar el contacto.</p>
+  </form>
+
+  <div class="hidden" id="success">
+    <div class="card success">
+      <div class="check">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h2>¡Listo! Solicitud enviada</h2>
+      <p>Un asesor de Yango se contactará con vos en <b>menos de 24 horas</b> por tu canal preferido.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// URL del Web App de Apps Script (cuenta personal, acceso "Cualquier persona")
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwRjQda3N-fYjWjaC9vdyBKtbVFqTJHMIx7CuC8hmYct0h0jEr5vu1lWwoRqdmas0lq6w/exec';
+document.getElementById('leadForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var valid = true;
+  this.querySelectorAll('.error-msg').forEach(function(m){ m.style.display = 'none'; });
+  function err(el){ valid = false; var f = el.closest('.field'); if (f) f.querySelector('.error-msg').style.display = 'block'; }
+  this.querySelectorAll('input[required], select[required]').forEach(function(el){
+    if (!el.value.trim()) err(el);
+  });
+  ['tipo','horario','canal'].forEach(function(name){
+    if (!document.querySelector('input[name="'+name+'"]:checked')) err(document.querySelector('input[name="'+name+'"]'));
+  });
+  var tel = this.querySelector('#telefono');
+  if (tel.value.trim() && !/^[0-9+()\-\s]{6,}$/.test(tel.value)) err(tel);
+  var mail = this.querySelector('#correo');
+  if (mail.value.trim() && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail.value)) err(mail);
+  if (!valid) { this.querySelector('.error-msg[style*="block"]') && this.querySelector('.error-msg[style*="block"]').scrollIntoView({behavior:'smooth', block:'center'}); return; }
+  var data = {
+    fecha: new Date().toLocaleString('es-BO'),
+    nombre: this.nombre.value.trim(),
+    vehiculos: this.vehiculos.value,
+    tipo: (document.querySelector('input[name="tipo"]:checked')||{}).value || '',
+    telefono: this.telefono.value.trim(),
+    correo: this.correo.value.trim(),
+    zona: this.zona.value,
+    oficina: (document.querySelector('input[name="oficina"]:checked')||{}).value || 'no especifica',
+    horario: (document.querySelector('input[name="horario"]:checked')||{}).value || '',
+    canal: (document.querySelector('input[name="canal"]:checked')||{}).value || ''
+  };
+  if (SCRIPT_URL) {
+    fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'text/plain;charset=utf-8'}, body: JSON.stringify(data) }).catch(function(){});
+  }
+  this.classList.add('hidden');
+  document.querySelector('.or').classList.add('hidden');
+  document.getElementById('success').classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+</body>
+</html>
